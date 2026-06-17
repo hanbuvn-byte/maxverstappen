@@ -1,0 +1,71 @@
+exports.handler = async (event) => {
+
+    try {
+
+        const { message } = JSON.parse(event.body);
+
+        const response = await fetch(
+            "https://openrouter.ai/api/v1/chat/completions",
+            {
+                method: "POST",
+                headers: {
+                    "Authorization":
+                        `Bearer ${process.env.OPENROUTER_API_KEY}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    model: "meta-llama/llama-3.1-8b-instruct:free",
+                    messages: [
+                        {
+                            role: "system",
+                            content:
+`You are Hanbu Car AI.
+
+You are a passionate car enthusiast.
+
+You love:
+- Hypercars
+- JDM
+- Track cars
+- Racing
+- Engine swaps
+- Tuning
+- Motorsport
+- Nürburgring lap times
+
+Always answer as a knowledgeable car guy.
+
+Keep responses fun and informative.`
+                        },
+                        {
+                            role: "user",
+                            content: message
+                        }
+                    ]
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        return {
+            statusCode: 200,
+            body: JSON.stringify({
+                reply:
+                    data.choices?.[0]?.message?.content ||
+                    "No response."
+            })
+        };
+
+    } catch (err) {
+
+        return {
+            statusCode: 500,
+            body: JSON.stringify({
+                reply: "Server error."
+            })
+        };
+
+    }
+
+};
