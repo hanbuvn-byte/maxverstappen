@@ -69,3 +69,16 @@ Keep responses fun and informative.`
 }
 
 };
+messageInput.addEventListener("keydown", e => {
+
+    if (e.key === "Enter" && !e.shiftKey) {
+
+        e.preventDefault();
+
+        sendMessage();
+    }
+
+});
+const data = await response.json();
+
+console.log(JSON.stringify(data, null, 2));
