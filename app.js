@@ -73,6 +73,7 @@ async function sendMessage(){
 
     }
 }
+
 messageInput.addEventListener("keydown", e => {
 
     if (e.key === "Enter" && !e.shiftKey) {
