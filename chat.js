@@ -57,15 +57,15 @@ Keep responses fun and informative.`
             })
         };
 
-    } catch (err) {
+    catch (err) {
+    console.error(err);
 
-        return {
-            statusCode: 500,
-            body: JSON.stringify({
-                reply: "Server error."
-            })
-        };
-
-    }
+    return {
+        statusCode: 500,
+        body: JSON.stringify({
+            error: String(err)
+        })
+    };
+}
 
 };
