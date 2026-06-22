@@ -82,3 +82,14 @@ messageInput.addEventListener("keydown", e => {
 const data = await response.json();
 
 console.log(JSON.stringify(data, null, 2));
+const data = await response.json();
+
+console.log(data);
+
+return {
+  statusCode: 200,
+  body: JSON.stringify({
+    reply: data.choices?.[0]?.message?.content ||
+           JSON.stringify(data)
+  })
+};
