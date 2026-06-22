@@ -10,7 +10,7 @@ exports.handler = async (event) => {
                 method: "POST",
                 headers: {
                     "Authorization":
-                        `Bearer ${process.env.239ee69803ed12d0ad3e2f06ae093fe12ff838c03241f545fa4e11e21c45acab}`,
+                        `Bearer ${process.env.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}`,
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
